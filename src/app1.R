@@ -10,11 +10,13 @@ ui <- fluidPage(
     # Without this, the browser tab would show the HTML of the title above.
     windowTitle = "Shiny App"
   ),
-  textInput("name", label = "Enter your Name")
+  textInput("name", label = "Enter your Name"),
+  textOutput("greeting")
 )
 
 server <- function(input, output, session) {
   output$title <- renderText(paste0(input$name, "'s"))
+  output$greeting <- renderText(paste0("Hello ", input$name))
 }
 
 shinyApp(ui, server)
